@@ -42,7 +42,21 @@ const prevSlide = () => {
 // Event Listeners
 nextBtn.addEventListener('click', e => {
 	nextSlide();
+	if(autoSlideIsActive) {
+		clearInterval(slideInterval);
+		slideInterval = setInterval(nextSlide, slideDuration);
+	}
 });
 prevBtn.addEventListener('click', e => {
 	prevSlide();
+	if(autoSlideIsActive) {
+		clearInterval(slideInterval);
+		slideInterval = setInterval(nextSlide, slideDuration);
+	}
 });
+
+// Auto slide
+if(autoSlideIsActive) {
+	//run next slide at interval time
+	slideInterval = setInterval(nextSlide, slideDuration);
+}
